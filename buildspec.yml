@@ -11,7 +11,6 @@ phases:
   build:
     commands:
       - echo build Docker image on `date`
-      - cd src
       - docker build -t qukka-stage:latest .
       - docker tag qukka-stage:latest 107082111359.dkr.ecr.ap-southeast-1.amazonaws.com/qukka-stage:latest
   post_build:
