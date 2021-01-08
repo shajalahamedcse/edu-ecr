@@ -18,7 +18,7 @@ phases:
       - echo build Docker image complete `date`
       - echo push latest Docker images to ECR...
       - docker push 107082111359.dkr.ecr.ap-southeast-1.amazonaws.com/qukka-stage:latest
-      - printf '[{"name":"node-stage-task","imageUri":"%s"}]' 107082111359.dkr.ecr.ap-southeast-1.amazonaws.com/qukka-stage:latest > imagedefinitions.json
+      - printf '[{"name":"node-stage-api","imageUri":"%s"}]' 107082111359.dkr.ecr.ap-southeast-1.amazonaws.com/qukka-stage:latest > imagedefinitions.json
 
 artifacts:
     files: imagedefinitions.json
