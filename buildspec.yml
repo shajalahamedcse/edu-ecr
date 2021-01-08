@@ -3,6 +3,7 @@ phases:
   install:
     commands:
       - echo install step...
+      - pip install --upgrade awscli==1.18.17
   pre_build:
     commands:
       - echo logging in to AWS ECR...
