@@ -4,6 +4,7 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
+      - pip install --upgrade awscli==1.18.17 
       - aws --version
       - IMAGE_REPO_NAME=qukka-stage
       - IMAGE_TAG=latest
