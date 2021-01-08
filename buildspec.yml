@@ -1,35 +1,20 @@
-version: 0.1
-
+version: 0.2
 phases:
+  install:
+    commands:
+      - echo install step...
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
-      - pip install --upgrade awscli==1.18.17 
-      - aws --version
-      - IMAGE_REPO_NAME=qukka-stage
-      - IMAGE_TAG=latest
-      - AWS_ACCOUNT_ID=107082111359
-      - AWS_REG=ap-southeast-1
+      - echo logging in to AWS ECR...
       - $(aws ecr get-login --no-include-email --region ap-southeast-1)
-     # - $(aws ecr get-login --region ap-southeast-1 --no-include-email)
-     # - docker login -u AWS -p $(aws ecr get-login-password --region ap-southeast-1) 107082111359.dkr.ecr.ap-southeast-1.amazonaws.com
-     # - $(aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 107082111359.dkr.ecr.ap-southeast-1.amazonaws.com)
-     # - REPOSITORY_URI=107082111359.dkr.ecr.ap-southeast-1.amazonaws.com/qukka-stage
-     # - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-     # - IMAGE_TAG=${COMMIT_HASH:=latest}
-     # - echo $IMAGE_TAG
   build:
     commands:
-      - echo Build started on `date`
-      - echo Building the Docker image...
-      #- docker build -t $REPOSITORY_URI:latest .
-      - docker build -t $IMAGE_REPO_NAME .
-      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REG.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG 
-     # - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - echo build Docker image on `date`
+      - cd src
+      - docker build -t qukka-stage:latest .
+      - docker tag qukka-stage:latest 107082111359.dkr.ecr.ap-southeast-1.amazonaws.com/qukka-stage:latest
   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker images...
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REG.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
-      #- docker push $REPOSITORY_URI:latest
-      #- docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo build Docker image complete `date`
+      - echo push latest Docker images to ECR...
+      - docker push 107082111359.dkr.ecr.ap-southeast-1.amazonaws.com/qukka-stage:latest
