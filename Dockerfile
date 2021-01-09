@@ -1,12 +1,13 @@
-FROM node:12
+FROM nginx:latest
+#FROM node:12
 
-RUN mkdir /app
-WORKDIR /app
+#RUN mkdir /app
+#WORKDIR /app
 
-COPY package.json /app/
+#COPY package.json /app/
 
-RUN yarn
+#RUN yarn
 
-COPY . /app/
+#COPY . /app/
 
-CMD ["yarn", "start"]
+#CMD ["yarn", "start"]
