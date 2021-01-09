@@ -1,7 +1,9 @@
-{
+require('dotenv').config()
+
+module.exports = {
   "development": {
     "username": "root",
-    "password": "pass",
+    "password": "mypassword",
     "database": "example",
     "host": "ec2-175-41-175-248.ap-southeast-1.compute.amazonaws.com",
     "dialect": "mysql"
