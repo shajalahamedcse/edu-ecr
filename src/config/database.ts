@@ -3,7 +3,7 @@
     "username": "root",
     "password": "pass",
     "database": "example",
-    "host": "10.10.1.120",
+    "host": "ec2-175-41-175-248.ap-southeast-1.compute.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {
